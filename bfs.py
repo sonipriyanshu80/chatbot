@@ -7,7 +7,7 @@ graph = {
      'f':['e']
 }
 
-start = 'a'
+start = input("enter start node ").lower() 
 visited = [start]
 queue = [start]
 
@@ -21,3 +21,4 @@ while queue:
         if neighbor not in visited:
             visited.append(neighbor)
             queue.append(neighbor)
+
