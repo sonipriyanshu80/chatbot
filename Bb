@@ -1,0 +1,30 @@
+# Program to perform BFS traversal of a graph
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D'],
+    'C': ['A', 'E'],
+    'D': ['B', 'E'],
+    'E': ['C', 'D', 'F'],
+    'F': ['E']
+}
+
+def bfs_traversal(graph, start):
+    visited = []
+    queue = [start]
+
+    print("BFS Traversal:", end=" ")
+
+    while queue:
+        node = queue.pop(0)   # Remove first element (FIFO)
+        if node not in visited:
+            print(node, end=" ")
+            visited.append(node)
+
+            for neighbor in graph[node]:
+                if neighbor not in visited and neighbor not in queue:
+                    queue.append(neighbor)
+
+# Taking start node as input
+start = input("Enter start node: ").upper()
+bfs_traversal(graph, start)
