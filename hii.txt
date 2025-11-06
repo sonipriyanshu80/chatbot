@@ -1,0 +1,361 @@
+                    ###  BFS Traversal
+graph = {
+     'a':['b','c'],
+     'b':['a','d'],
+     'c':['a','e'],
+     'd':['b','e'],
+     'e':['c','d','f'],
+     'f':['e']
+}
+
+start = input("enter start node ").lower() 
+visited = [start]
+queue = [start]
+
+print("BFS Traversal:", end=" ")
+
+while queue:
+    node = queue.pop(0)
+    print(node,end=" ")
+
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            visited.append(neighbor)
+            queue.append(neighbor)
+
+
+
+                    ###  DFS Traversal
+graph ={
+    'a':['b','c'],
+    'b':['d','e'],
+    'c':['a','f'],
+    'd':['b'],
+    'e':['b','f'],
+    'f':['c','e']
+}
+start = input("Enter the starting node:").lower()
+visited = []
+stack = [start]
+
+print ("DFS Traversal:", end=" ")
+
+while stack:
+    node = stack.pop()
+    if node not in visited:
+        print(node, end=" ")
+        visited.append(node)
+        
+    for neighbor in reversed (graph[node]):
+        if neighbor not in visited:
+            stack.append(neighbor)
+
+
+                    ###  waterjug
+def waterjug(jug1,jug2,target,maxjug1,maxjug2,visited):
+    if jug1==target or jug2==target:
+        print("target reached", jug1, jug2)
+        return True
+    if (jug1,jug2) in visited:
+        return False
+    visited.add((jug1,jug2))
+    print("current state",(jug1,jug2))
+    if waterjug(maxjug1,jug2,target,maxjug1,maxjug2,visited):
+        return True
+    if waterjug(jug1,maxjug2,target,maxjug1,maxjug2,visited):
+        return True
+    if waterjug(0,jug2,target,maxjug1,maxjug2,visited):
+        return True
+    if waterjug(jug1,0,target,maxjug1,maxjug2,visited):
+        return True
+    pour1= min(jug1,maxjug2-jug2)
+    
+    if waterjug(jug1-pour1,jug2+pour1,target,maxjug1,maxjug2,visited):
+        return True
+    #pour2= min(maxjug1-jug1,jug2)
+    if waterjug(jug1+pour1,jug2-pour1,target,maxjug1,maxjug2,visited):
+        return True
+    return False
+maxjug1=4
+maxjug2=3
+target=2
+print("steps to reach the target")
+waterjug(0,0,target,maxjug1,maxjug2,set())
+
+
+                    ###  stack
+stack = []
+print("\n---Stack Menu---")
+print("1. Push")
+print("2. Pop")
+print("3. Peek")
+print("4. Display")
+print("5. Exit")
+
+while True:
+    choice = int(input("Enter your choice:"))
+    if choice == 1:
+        element = input("Enter element to push:")
+        stack.append(element)
+        print(str(element)+" pushed into stack")
+
+    elif choice == 2:
+         if len(stack)==0:
+            print("Stack is empty")
+         else:
+            popped = stack.pop()
+            print("popped from stack")
+
+    elif choice == 3:
+        if len(stack) == 0:
+            print("Stack is empty! Nothing at peek")
+        else:
+            print("Top element",{stack[-1]})
+            
+    elif choice == 4:
+        if len(stack) == 0:
+            print("stack is empty")
+        else:
+            print("Current stack:",stack)
+
+    elif choice == 5:
+        print("See you again....")
+        break
+    else:
+        print("Invalid choice! Try again")
+
+
+
+                    ###  queue
+queue = []
+print("\n---Queue Menu---")
+print("1. Enqueue")
+print("2. Dequeue")
+print("3. Peek")
+print("4. Display")
+print("5. Exit")
+
+while True:
+    choice = int(input("Enter your choice:"))
+    if choice == 1:
+        element = input("Enter element to enqueue:")
+        queue.append(element)
+        print(str(element)+" enqueued into queue")
+
+    elif choice == 2:
+         if len(queue)==0:
+            print("queue is empty")
+         else:
+            removed = queue.pop(0)
+            print("Dequeued element",{removed})
+
+    elif choice == 3:
+        if len(queue) == 0:
+            print("Queue is empty! No front element")
+        else:
+            print("Front element",{queue[0]})
+            
+    elif choice == 4:
+        if len(queue) == 0:
+            print("queue is empty")
+        else:
+            print("Current queue:",queue)
+
+    elif choice == 5:
+        print("See you again....")
+        break
+    else:
+        print("Invalid choice! Try again")
+
+
+                    ###  menu driven
+l1 = []
+print("\n---Menu---")
+print("1. add")
+print("2. remove") 
+print("3. display")
+print("4. sort")
+print("5. reverse")
+print("6. search")
+print("7. Exit")
+
+while True:
+    choice = int(input("Enter your choice:"))
+    if choice == 1:
+        element = int(input("Enter element to add:"))
+        l1.append(element)
+        print(str(element)+"added")
+
+    elif choice == 2:
+         val=int(input("enter element to remove"))
+         if val not in l1:
+            print("element not found")
+         else:
+            l1.remove(val)
+            print("removed from list")
+
+    elif choice == 3:
+        if len(l1) == 0:
+            print("list is empty")
+        else:
+            print("Current list:",l1)
+
+    elif choice == 4:
+        print("sorted list:",sorted(l1))
+
+    elif choice == 5:
+        l1.reverse()
+        print(l1)
+
+    elif choice == 6:
+        val = int(input("enter element to search"))
+        if val not in l1:
+            print("element not found")
+        else:
+            print(val,"found at",l1.index(val))
+    
+    elif choice == 7:
+        print("See you again....")
+        break
+    else:
+        print("Invalid choice! Try again")
+
+
+
+                    ###  advance chatbot
+from datetime import datetime
+dt=datetime.now().date()
+tt=datetime.now().time()
+while True:
+    user_input = input("You:").lower()
+    if user_input in("hii","hiii","hello","kaisa h"):
+        print("Bot: How Can I help you")
+    elif user_input == "what is your name?":
+        print("Bot:I'm Sora, I'm a chatbot to assist you")
+    elif user_input == "help":
+        print("Bot:what subject do you need help")
+    elif user_input == "computer sci":
+        print("Bot:for computer sci focus on progm basics and data structures")
+    elif "math" in user_input:   
+        print("for math understand the concept well and revise regularly")
+        
+    elif "exam help" in user_input:
+        print("start early make study schedule,revise key topics & take breaks")
+    elif "motivation" in user_input:
+        print("you are doing great, keep pushing further.")
+    elif "date" in user_input:
+        print("Bot:",dt)
+    elif "time" in user_input:
+        print("Bot:",tt)   
+    elif user_input == "bye":
+        print("Bot:see you again")
+        break
+    else:
+        print("I'm not sure try computer sci, math")
+
+
+                    ###  search_num-char
+print("Menu driven program for list operations")
+print("1. Numeric")
+print("2. Character")
+print("3. Exit")
+choice = int(input("Enter your choice: "))  
+if choice == 1:
+    l1 = []
+    n = int(input("Enter length of list: "))
+    for i in range(n):
+        print("enter",i+1,"value")
+        a = int(input())
+        l1.append(a)
+    print("Original list:", l1)
+    search = int(input("Enter element to search: "))
+    if search in l1:
+        print("Element found at index:", l1.index(search))
+    else:
+        print("Element not found")
+elif choice == 2:
+    l2 = []
+    n = int(input("Enter length of list: "))
+    for i in range(n):
+        print("enter",i+1,"value")
+        a = input()
+        l2.append(a)
+    print("Original list:", l2)
+    search = input("Enter element to search: ")
+    if search in l2:
+        print("Element found at index:", l2.index(search))
+    else:
+        print("Element not found")
+else:
+    print("wrong choice")
+
+
+                    ###  uppercase_lowercase
+text = input("Enter a string: ")
+result = ""
+
+for ch in text:
+    if 'A' <= ch <= 'Z':
+        result += chr(ord(ch) + 32)
+    elif 'a' <= ch <= 'z':
+        result += chr(ord(ch) - 32)
+    else:
+        result += ch
+
+print("Converted string:", result)
+
+
+
+
+                    ###  encrption_decryption
+text = input("Enter text: ")
+key = int(input("Enter key: "))
+
+enc = ""
+for ch in text:
+    enc += chr(ord(ch) + key)
+print("Encrypted:", enc)
+
+dec = ""
+for ch in enc:
+    dec += chr(ord(ch) - key)
+print("Decrypted:", dec)
+
+
+
+                    ###  advance_encrption_decryption 
+n=input("enter a string")
+key=int(input("enter a key"))
+def encryp():
+    enc=""
+    for ch in n:
+        if ch.isupper():
+            lc = chr((ord(ch)-65 +key)%26+65)
+            enc+=lc
+        elif ch.islower():
+            lc = chr((ord(ch)-97 +key)%26+97)
+            enc+=lc
+        else:
+            enc+=lc
+    print("result",enc)
+def decryp():
+    dec=""
+    enc=""
+    '''for ch in n:
+        if ch.isupper():
+            lc = chr((ord(ch)-65 +key)%26+65)
+            enc+=lc
+        elif ch.islower():
+            lc = chr((ord(ch)-97 +key)%26+97)
+            enc+=lc
+        else:
+            enc+=lc'''
+    for ch in n:
+        lc = chr(ord(ch)+key)
+        enc+=lc
+    for ch in enc:
+        lc = chr(ord(ch)-key)
+        dec+=lc
+    print("result",dec)
+encryp()
+decryp()
