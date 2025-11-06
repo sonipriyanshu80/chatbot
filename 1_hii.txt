@@ -359,3 +359,72 @@ def decryp():
     print("result",dec)
 encryp()
 decryp()
+
+
+
+                      ### implementing dictionaries and its various operations.
+
+d = {}
+
+n = int(input("Enter size of dictionary: "))
+for i in range(n):
+    key = input("Enter key: ")
+    value = input("Enter value: ")
+    d[key] = value
+print(d)
+
+def upfun():
+    print("Enter value of a key to update")
+    k1 = input("Enter key: ")
+    v1 = input("Enter new value: ")
+    if k1 in d:
+        d[k1] = v1
+        print("Updated dictionary:", d)
+    else:
+        print("Key not found")
+    menu()
+
+def delfun():
+    k2 = input("Enter key to delete: ")
+    if k2 in d:
+        del d[k2]
+        print("Updated dictionary:", d)
+    else:
+        print("Key not found")
+    menu()
+
+def serfun():
+    k3 = input("Enter key to search: ")
+    if k3 in d:
+        print("Key and value found")
+        print(d[k3])
+    else:
+        print("Key not found")
+    menu()
+
+def addfun():
+    k4 = input("Enter new key: ")
+    v4 = input("Enter new value: ")
+    d[k4] = v4
+    print("New dictionary:", d)
+    menu()
+
+def menu():
+    print("1. Update  2. Delete  3. Search  4. Add  5. Display")
+    ch = int(input("Enter your choice: "))
+    if ch == 1:
+        upfun()
+    elif ch == 2:
+        delfun()
+    elif ch == 3:
+        serfun()
+    elif ch == 4:
+        addfun()
+    elif ch == 5:
+        print(d)
+        menu()
+    else:
+        print("Wrong choice")
+        menu()
+
+menu()
